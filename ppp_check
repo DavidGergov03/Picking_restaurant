@@ -1,0 +1,36 @@
+# The input is the name of the restaurant and
+# the average price per person in the format "restaurant-price".
+# PPP = price per person
+# A good PPP is less than 35 lv.
+ 
+ 
+good_restaurant = []
+ 
+ 
+def restaurant_check(ppp):
+    is_good = False
+    if ppp <= 35:
+        is_good = True
+    elif ppp > 35:
+        is_good = False
+    return is_good
+ 
+ 
+checking = True
+ 
+while checking:
+    restaurants = input().split()
+    for current_restaurant in restaurants:
+        restaurant_characteristics = current_restaurant.split("-")
+        restaurant_name = restaurant_characteristics[0]
+        if restaurant_name == 'End':
+            checking = False
+            break
+        restaurant_ppp = restaurant_characteristics[1]
+        restaurant_ppp_int = int(restaurant_ppp)
+        current_restaurant_check = restaurant_check(restaurant_ppp_int)
+        if current_restaurant_check:
+            good_restaurant.append(restaurant_name)
+ 
+ 
+print(f"These restaurants are a good option:{", ".join(good_restaurant)}!")
